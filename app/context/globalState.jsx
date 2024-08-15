@@ -9,8 +9,8 @@ export const GlobalContext = createContext(null);
 
 const GlobalState = ({ children }) => {
   const [loading, setLoading] = useState(true);
-  const [allData, setAllData] = useState({});
   const [openSidebar, setOpenSidebar] = useState(false);
+  const [allUserData, setAllUserData] = useState({});
   const [errors, setErrors] = useState(null);
   const [token, setToken] = useState(null);
   const [emailOrUsername, setEmailOrUsername] = useState("");
@@ -19,7 +19,7 @@ const GlobalState = ({ children }) => {
 
   const router = useRouter();
 
-  const getDatas = async (token) => {
+  const loadUserDatas = async (token) => {
     if (!token) {
       setLoading(false);
       router.push("/");
@@ -48,7 +48,7 @@ const GlobalState = ({ children }) => {
         throw new Error(data.errors.map((err) => err.message).join(", "));
       }
 
-      setAllData(data);
+      setAllUserData(data);
     } catch (error) {
       setErrors(error.message);
       router.push("/");
@@ -80,7 +80,7 @@ const GlobalState = ({ children }) => {
       const data = await res.json();
       localStorage.setItem("token", data);
       setToken(data);
-      await getDatas(data);
+      await loadUserDatas(data);
       router.push("/dashboard");
     } catch (error) {
       setErrorLogin(error.message);
@@ -94,7 +94,7 @@ const GlobalState = ({ children }) => {
       const storedToken = localStorage.getItem("token");
       if (storedToken) {
         setToken(storedToken);
-        getDatas(storedToken);
+        loadUserDatas(storedToken);
       } else {
         setLoading(false);
       }
@@ -103,31 +103,31 @@ const GlobalState = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      getDatas(token);
+      loadUserDatas(token);
     }
   }, [token]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if (!loading && (!token || !Object.keys(allData).length)) {
+      if (!loading && (!token || !Object.keys(allUserData).length)) {
         router.push("/");
       }
     }
-  }, [loading, token, allData]);
+  }, [loading, token, allUserData]);
 
-  const User = allData.data?.user;
-  const AuditTransaction = allData.data?.transaction_audits;
-  const Skills = allData.data?.transaction_skills;
-  const XpTransaction = allData.data?.transaction_xp;
-  const XpTotal = allData.data?.totalXp;
-  const XpView = allData.data?.xp_view;
-  const AuditInteractions = allData.data?.interaction;
+  const User = allUserData.data?.user;
+  const AuditTransaction = allUserData.data?.transaction_audits;
+  const Skills = allUserData.data?.transaction_skills;
+  const XpTransaction = allUserData.data?.transaction_xp;
+  const XpTotal = allUserData.data?.totalXp;
+  const XpView = allUserData.data?.xp_view;
+  const AuditInteractions = allUserData.data?.interaction;
 
   return (
     <GlobalContext.Provider
       value={{
         loading,
-        allData,
+        allUserData,
         errors,
         openSidebar,
         setOpenSidebar,

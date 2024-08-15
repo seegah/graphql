@@ -1,8 +1,8 @@
 "use client";
 
 import { MdSchool } from "react-icons/md";
-import { TbGrowth } from "react-icons/tb";
-import { GrOptimize  } from "react-icons/gr";
+import { VscSymbolEvent } from "react-icons/vsc";
+import { GrOptimize } from "react-icons/gr";
 import { useGlobalContext } from "../context/globalState";
 import { convertBytes } from "../utils";
 import Widget from "../components/Widget";
@@ -25,7 +25,7 @@ export default function Dashboard() {
       id: 1,
       title: "Total XP",
       subtitle: totalXp || 0,
-      icon: <TbGrowth className="h-7 w-7" />,
+      icon: <GrOptimize className="h-7 w-7" />,
     },
     {
       id: 2,
@@ -37,7 +37,7 @@ export default function Dashboard() {
       id: 3,
       title: "Level",
       subtitle: User[0].events[0]?.level || 0,
-      icon: <GrOptimize  className="h-7 w-7" />,
+      icon: <VscSymbolEvent className="h-7 w-7" />,
     },
   ];
 
