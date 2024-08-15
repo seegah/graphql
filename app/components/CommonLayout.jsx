@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 import Dashboard from "../dashboard/page";
 
 const CommonLayout = ({ children }) => {
@@ -15,6 +16,7 @@ const CommonLayout = ({ children }) => {
       <div className="h-full w-full font-dm dark:bg-navy-900">
         <main className="mx-2.5 flex-none transition-all dark:bg-navy-900 md:pr-2 xl:ml-[323px]">
           <div>
+            <Header/>
             <div className="mx-auto min-h-screen p-2 !pt-[10px] md:p-2">
               {pathName === "/dashboard" ? <Dashboard /> : children}
             </div>

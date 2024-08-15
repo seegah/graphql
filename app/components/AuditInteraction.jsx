@@ -43,7 +43,7 @@ const AuditInteraction = () => {
   // Trier les auditeurs par nombre d'interactions et prendre les 6 premiers
   const sortedAuditors = Object.entries(MyAuditorsInteractions)
     .sort(([, a], [, b]) => b - a)
-    .slice(0, 6);
+    .slice(0, 10);
 
   const auditorLogins = sortedAuditors.map(([login]) => login);
   const auditorInteractions = sortedAuditors.map(
