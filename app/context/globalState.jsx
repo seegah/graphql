@@ -10,6 +10,7 @@ export const GlobalContext = createContext(null);
 const GlobalState = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [allData, setAllData] = useState({});
+  const [openSidebar, setOpenSidebar] = useState(false);
   const [errors, setErrors] = useState(null);
   const [token, setToken] = useState(null);
   const [emailOrUsername, setEmailOrUsername] = useState("");
@@ -128,6 +129,8 @@ const GlobalState = ({ children }) => {
         loading,
         allData,
         errors,
+        openSidebar,
+        setOpenSidebar,
         token,
         emailOrUsername,
         setEmailOrUsername,

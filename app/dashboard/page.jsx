@@ -53,7 +53,7 @@ export default function Dashboard() {
           />
         ))}
       </div>
-      <div className="mt-12 grid grid-cols-2 gap-5 md:grid-cols-2 ">
+      <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 ">
         <XpTransaction />
         <AuditInteraction />
       </div>

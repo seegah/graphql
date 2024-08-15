@@ -1,26 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Chart from "react-apexcharts";
+import { usePathname } from "next/navigation";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+import Dashboard from "../dashboard/page";
 
-const ChartLayout = ({ chartData, chartOptions, type }) => {
-  const [updateChartData, setUpdateChartData] = useState([]);
-  const [updateChartOptions, setUpdateChartOptions] = useState({});
+const CommonLayout = ({ children }) => {
+  const pathName = usePathname();
 
-  useEffect(() => {
-    setUpdateChartOptions(chartOptions);
-    setUpdateChartData(chartData);
-  }, []);
+  if (pathName === "/") return children;
 
   return (
-    <Chart
-      options={updateChartOptions}
-      series={updateChartData}
-      type={type}
-      width={"100%"}
-      height={"100%"}
-    />
+    <div className="flex h-full w-full bg-background-100 dark:bg-background-900">
+      <Sidebar />
+      <div className="h-full w-full font-dm dark:bg-navy-900">
+        <main className="mx-2.5 flex-none transition-all dark:bg-navy-900 md:pr-2 xl:ml-[323px]">
+          <div>
+            <Header/>
+            <div className="mx-auto min-h-screen p-2 !pt-[10px] md:p-2">
+              {pathName === "/dashboard" ? <Dashboard /> : children}
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
   );
 };
 
-export default ChartLayout;
+export default CommonLayout;

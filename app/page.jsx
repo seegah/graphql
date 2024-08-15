@@ -13,9 +13,9 @@ export default function Home() {
     errorLogin,
   } = useGlobalContext();
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="bg-white text-black rounded-lg shadow-lg flex w-full max-w-2xl">
-        <div className="w-1/2 bg-[#FF9B05] text-white p-8 rounded-r-lg">
+    <div className="flex items-center justify-center min-h-screen p-4">
+      <div className="bg-white text-black rounded-lg shadow-lg flex flex-col md:flex-row w-full max-w-3xl">
+        <div className="md:w-1/2 bg-[#FF9B05] text-white p-8 rounded-t-lg md:rounded-tr-none md:rounded-l-lg">
           <h2 className="text-2xl font-bold mt-6 mb-4">
             Welcome to Your Z01 Profile
           </h2>
@@ -24,18 +24,22 @@ export default function Home() {
             personal information, achievements, and more. Log in to get started
             and access your personalized dashboard.
           </p>
-          <div className="mt-8 p-4 bg-white rounded-lg ">
-            <h3 className="text-lg font-bold mb-4 text-black">
+          <div className="mt-8 p-4 bg-white rounded-lg text-black">
+            <h3 className="text-lg font-bold mb-4">
               Track progress and achievements
             </h3>
-            <p className="text-sm text-black">
+            <p className="text-sm">
               Keep an eye on your achievements and statistics with our
               interactive charts and graphs.
             </p>
           </div>
         </div>
-        <div className="w-1/2 p-8">
-          <img src="/logo.svg" alt="logo" className="mb-6 h-32 ml-20" />
+        <div className="md:w-1/2 p-8">
+          <img
+            src="/logo.svg"
+            alt="logo"
+            className="mb-6 h-24 mx-auto md:h-32 md:ml-20"
+          />
           <form onSubmit={login} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium">
@@ -48,7 +52,7 @@ export default function Home() {
                   name="email"
                   value={emailOrUsername}
                   onChange={(e) => setEmailOrUsername(e.target.value)}
-                  className="block w-full p-3 border border-gray-700 rounded-lg focus:ring focus:ring-[#FF9B05] focus:outline-none"
+                  className="block w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-[#FF9B05] focus:outline-none"
                   placeholder="Email or username"
                 />
                 <svg
@@ -72,7 +76,7 @@ export default function Home() {
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full p-3 border border-gray-700 rounded-lg focus:ring focus:ring-[#FF9B05] focus:outline-none"
+                  className="block w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-[#FF9B05] focus:outline-none"
                   placeholder="••••••••"
                 />
                 <svg
@@ -96,7 +100,7 @@ export default function Home() {
             >
               Sign in
             </button>
-            <p className="text-xs mt-4 ml-10">
+            <p className="text-xs mt-4 text-center md:text-left">
               Copyright 2024 &copy;{" "}
               <span className="uppercase font-semibold">Sigasha Honey</span>
             </p>

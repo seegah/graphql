@@ -37,10 +37,10 @@ const Skills = () => {
 
   return (
     <div className="w-full max-w-lg mx-auto p-3">
-      <h2 className="text-lg font-bold text-gray-800 mb-2 text-center">Skills</h2>
+      <h2 className="text-[16px] font-bold text-black mb-2 text-center">Best Skills</h2>
       {skillsWithPercentages.map(skill => (
         <div key={skill.type} className="scroll-mb-0.5">
-          <div className="text-sm font-semibold text-gray-600 capitalize">
+          <div className="text-sm font-semibold text-black capitalize">
             {skill.type.replace("skill_", "").replace('-', '')}
           </div>
           <Progress
